@@ -4,6 +4,9 @@ Progress results printer for PHPUnit
     Note: This was forked from the original repo to fix a long standing
     typo. Original author no longer appears to be maintaining this code.
 
+    The exact error (fixed here) was: 
+    `Fatal error: Call to undefined method PHPUnit_Framework_TestResult::allCompletlyImplemented() in /vagrant_www/phpunit-progress/PHPUnit/Extensions/Progress/ResultPrinter.php on line 250`
+
 This PHPUnit extention makes the printed tests results look similar to
 Rspec's default formatter called "progress".
 
