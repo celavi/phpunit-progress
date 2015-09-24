@@ -1,5 +1,5 @@
 {
-    "name": "michael/phpunit-progress",
+    "name": "michaelachrisco/phpunit-progress",
     "description": "Bring rspec ouput styling to phpunit!",
     "require": {
         "phpunit/phpunit": "^4.8"
