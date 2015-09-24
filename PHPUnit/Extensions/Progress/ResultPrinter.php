@@ -50,15 +50,15 @@ class PHPUnit_Extensions_Progress_ResultPrinter extends PHPUnit_TextUI_ResultPri
     }
 
     if ($this->verbose) {
-      if ($result->deprecatedFeaturesCount() > 0) {
-        if ($result->failureCount() > 0) {
-          print "\n--\n\nDeprecated PHPUnit features are being used";
-        }
+      // if ($result->deprecatedFeaturesCount() > 0) {
+        // if ($result->failureCount() > 0) {
+        //   print "\n--\n\nDeprecated PHPUnit features are being used";
+        // }
 
-        foreach ($result->deprecatedFeatures() as $deprecatedFeature) {
-          $this->write($deprecatedFeature . "\n\n");
-        }
-      }
+        // foreach ($result->deprecatedFeatures() as $deprecatedFeature) {
+        //   $this->write($deprecatedFeature . "\n\n");
+        // }
+      // }
 
       if ($result->notImplementedCount() > 0) {
         $this->printIncompletes($result);
@@ -70,7 +70,7 @@ class PHPUnit_Extensions_Progress_ResultPrinter extends PHPUnit_TextUI_ResultPri
     }
 
     $this->printFooter($result);
-  } 
+  }
 
   /**
    * @param  array   $defects
@@ -103,7 +103,7 @@ class PHPUnit_Extensions_Progress_ResultPrinter extends PHPUnit_TextUI_ResultPri
   {
     $this->printDefectHeader($defect, $count, $failOrError);
 
-    $padding = str_repeat(' ', 
+    $padding = str_repeat(' ',
       4 + ( $failOrError ? strlen((string)$count) : 0 )
     );
 
@@ -136,9 +136,9 @@ class PHPUnit_Extensions_Progress_ResultPrinter extends PHPUnit_TextUI_ResultPri
         )
       );
     } else {
-      $this->write( 
+      $this->write(
         sprintf( "  %s", $this->yellow($testName) )
-      ); 
+      );
     }
   }
 
@@ -165,7 +165,7 @@ class PHPUnit_Extensions_Progress_ResultPrinter extends PHPUnit_TextUI_ResultPri
    * @param  string                        $padding
    */
   protected function printDefectTrace(PHPUnit_Framework_TestFailure $defect, $padding = 0)
-  { 
+  {
     $trace = trim(
       PHPUnit_Util_Filter::getFilteredStacktrace(
         $defect->thrownException()
@@ -187,7 +187,7 @@ class PHPUnit_Extensions_Progress_ResultPrinter extends PHPUnit_TextUI_ResultPri
   {
     $this->printDefects(
       $result->errors(),
-      $result->errorCount(), 
+      $result->errorCount(),
       'Errors'
     );
   }
@@ -243,7 +243,7 @@ class PHPUnit_Extensions_Progress_ResultPrinter extends PHPUnit_TextUI_ResultPri
       $resultsCount,
       $resultsCount == 1 ? '' : 's',
       $this->numAssertions,
-      $this->numAssertions == 1 ? '' : 's' 
+      $this->numAssertions == 1 ? '' : 's'
     );
 
     if ( $result->wasSuccessful() &&
@@ -253,9 +253,9 @@ class PHPUnit_Extensions_Progress_ResultPrinter extends PHPUnit_TextUI_ResultPri
       $this->write($this->green($footer));
     }
 
-    else if ( ( !$result->allCompletelyImplemented() || !$result->noneSkipped() ) 
+    else if ( ( !$result->allCompletelyImplemented() || !$result->noneSkipped() )
       &&
-      $result->wasSuccessful() ) 
+      $result->wasSuccessful() )
     {
 
       $footer .= sprintf(
@@ -291,22 +291,22 @@ class PHPUnit_Extensions_Progress_ResultPrinter extends PHPUnit_TextUI_ResultPri
       $this->write($this->red($footer));
     }
 
-    if ( ! $this->verbose &&
-      $result->deprecatedFeaturesCount() > 0 ) 
-    {
-      $message = sprintf(
-        "Warning: Deprecated PHPUnit features are being used %s times!\n".
-        "Use --verbose for more information.\n",
-        $result->deprecatedFeaturesCount()
-      );
-
-      if ($this->colors) {
-        $message = "\x1b[37;41m\x1b[2K" . $message .
-          "\x1b[0m";
-      }
-
-      $this->write("\n" . $message);
-    }
+    // if ( ! $this->verbose &&
+    //   $result->deprecatedFeaturesCount() > 0 )
+    // {
+    //   $message = sprintf(
+    //     "Warning: Deprecated PHPUnit features are being used %s times!\n".
+    //     "Use --verbose for more information.\n",
+    //     $result->deprecatedFeaturesCount()
+    //   );
+    //
+    //   if ($this->colors) {
+    //     $message = "\x1b[37;41m\x1b[2K" . $message .
+    //       "\x1b[0m";
+    //   }
+    //
+    //   $this->write("\n" . $message);
+    // }
 
     $this->writeNewLine();
   }
@@ -422,7 +422,7 @@ class PHPUnit_Extensions_Progress_ResultPrinter extends PHPUnit_TextUI_ResultPri
     static $deletedHeader = false;
 
     if ( ! $deletedHeader ) {
-      ob_clean();
+      if (ob_get_length()) ob_end_clean();
       $deletedHeader = true;
     }
 
@@ -496,3 +496,4 @@ class PHPUnit_Extensions_Progress_ResultPrinter extends PHPUnit_TextUI_ResultPri
     return $this->color($text, "37");
   }
 }
+
