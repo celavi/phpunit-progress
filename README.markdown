@@ -16,7 +16,6 @@ a lot of the info printed by the default PHPUnit printer was removed.
 Test results have the same colors and spacing as the Rspec's results.
 If you want to see how results look, check out the screenshot below!
 
-
 Usage
 -----
 
@@ -40,6 +39,40 @@ If you are intrested in this way, I would recommend that you read [PHPUnit's
 docs][docs].
 
 
+Composer Install
+======================================================
+Add package to your composer.json file
+By Repo:
+```
+    "repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/michaelachrisco/phpunit-progress"
+    }
+```
+By Development ENV:
+```
+"require-dev":{
+  "michaelachrisco/phpunit-progress": "dev-master"
+}
+```
+Install via composer:
+`composer install`
+
+Recommendation: Edit your ~/.bashrc or ~/.bash_profile to include an alias
+```
+alias phptest="phpunit --include-path vendor/michaelachrisco/phpunit-progress/ --printer PHPUnit_Extensions_Progress_ResultPrinter --color"
+```
+
+Use:
+```bash
+$ phptest
+...............................................................  63 / 121 ( 52%)
+..........................................................
+
+Finished in 50.17 seconds
+1121 tests, 2111 assertions
+```
 Screenshot
 ----------
 
