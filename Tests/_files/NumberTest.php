@@ -56,6 +56,7 @@ class NumberTest extends PHPUnit_Framework_TestCase {
    * @covers Number::add
    * @group failing
    */
+  //TODO: Testing will need to be reworked.
   public function testThatMyMathTeacherSucked()
   {
     $this->number->add(1);
